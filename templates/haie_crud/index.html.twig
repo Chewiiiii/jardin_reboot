@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Haie index{% endblock %}
+
+{% block body %}
+
+<body>
+    <header>
+        <div class="example-wrapper">
+            <h1>Haie index</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Code</th>
+                        <th>Nom</th>
+                        <th>Prix</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for haie in haies %}
+                    <tr>
+                        <td>{{ haie.id }}</td>
+                        <td>{{ haie.code }}</td>
+                        <td>{{ haie.nom }}</td>
+                        <td>{{ haie.prix }}</td>
+                        <td>
+                            <a href="{{ path('app_haie_crud_show', {'id': haie.id}) }}">show</a>
+                            <a href="{{ path('app_haie_crud_edit', {'id': haie.id}) }}">edit</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ path('app_haie_crud_new') }}">Create new</a>
+        </div>
+    </header>
+</body>
+{% endblock %}

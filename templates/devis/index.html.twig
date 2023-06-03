@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DevisController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<body>
+    <header>
+        <div class="example-wrapper">
+
+            {% set prixunitaire = 0 %}
+            {% if (haie == "Laurier") %}
+            {% set prixunitaire = 30 %}
+            {% endif %}
+            {% if (haie == "Thuya") %}
+            {% set prixunitaire = 35 %}
+            {% else %}
+            {% set prixunitaire = 28 %}
+            {% endif %}
+            {% if (hauteur <= 1.5 ) %}
+            {% set prixtotale = prixunitaire * longueur %}
+            {% else %}
+            {% set prixtotale = prixunitaire * longueur * 1.5 %}
+            {% endif %}
+            {% if (choix == "entreprise")%}
+            {% set prixreduc = prixtotale * 0.10 %}
+            {% set prixtotale = prixtotale * 0.90 %}
+            {% endif %} 
+            
+            <h1> Devis pour la haie</h1>
+
+            <h2> Vous etes un/une : {{choix}} ,{% if (choix == "entreprise")%}Vous avez droit à une réduction de 10%{% endif %} </h2>
+
+            <text> Rappel des mesure de la haie : longueur {{longueur}}m, hauteur {{hauteur}}m, type de haie {{haie}}</text>
+            {% if (choix == "entreprise") %}
+            <h3>  "Vous avez une remise de"{{prixreduc}}</h3>
+            {% endif %}
+            <br>
+            <h3> Le Montant de votre devis est de {{prixtotale}} €</h3>
+        </div>
+    </header>
+</body>
+{% endblock %}

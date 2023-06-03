@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MesureController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<body>
+    <header>
+        <div class="example-wrapper">
+            <form action ="{{path('app_devis')}}" method ="POST">
+                <select name="haie" id="haie">
+                    {% for item in haies %}
+                        <option value={{item.getCode()}}>
+                            {{item.getNom()}}
+                        </option>
+                    {% endfor %}
+                </select>
+                </br>
+                    
+                </br>
+                longueur <input type="text" name="longueur" >longueur en m
+                </br>
+                hauteur <input type="text" name="hauteur"> hauteur en m
+                </br>
+                <input type="submit" value="Suite">
+
+            </form>
+        </div>
+    </header>
+</body>
+
+{% endblock %}
